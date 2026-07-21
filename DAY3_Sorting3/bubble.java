@@ -76,5 +76,17 @@ public class bubble {
         for(int i=0; i<arr.length; i++ ){
             System.out.print(arr[i]+" ");
         }
+
+        int arrr[] = {5, 2, 8, 1};
+        Arrays.sort(arrr);
+        // Output: 1 2 5 8
+
+        Arrays.sort(arrr, 0, 4);
+
+        Integer arrrr[] = {5, 2, 8, 1};     //Because Collections.reverseOrder() works only with objects, and Integer is a wrapper class (an object), whereas int is a primitive data type.
+        Arrays.sort(arrrr, Collections.reverseOrder());
+
+        String names[] = {"Tanmay", "Apple", "Cat"};
+        Arrays.sort(names, Collections.reverseOrder());
     }
 }

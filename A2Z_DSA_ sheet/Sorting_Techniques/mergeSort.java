@@ -39,7 +39,7 @@ public class mergeSort{
             return;
         }
 
-        int mid = si + (ei - si) / 2;
+        int mid = (si+ei)/2;
 
         //left
         mergeSort(arr, si, mid);
