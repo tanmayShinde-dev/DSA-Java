@@ -1,59 +1,69 @@
-public class mergeSort{
+public class StringMergeSort {
 
-  
-
+    // Compare two strings alphabetically
+    public static boolean isAlphabeticallySmaller(String str1, String str2) {
+        return str1.compareTo(str2) < 0;
     }
-    public static String[] merge(String arr1[], String arr2[]){
+
+    // Merge two sorted arrays
+    public static String[] merge(String[] arr1, String[] arr2) {
         int m = arr1.length;
         int n = arr2.length;
-        
-        String arr3[] = new String[m+n];
 
-        int i = 0;
-        int j = 0;
-        int k = 0;
+        String[] arr3 = new String[m + n];
 
-        while( i<m && j<n){
-            if(isAlphabetecallySmaller(arr1[i], arr2)[j]){
+        int i = 0, j = 0, k = 0;
+
+        while (i < m && j < n) {
+            if (isAlphabeticallySmaller(arr1[i], arr2[j])) {
                 arr3[k++] = arr1[i++];
-            }
-            else{
+            } else {
                 arr3[k++] = arr2[j++];
             }
         }
 
-        // left remains
-        while(i<=m){
-            
+        // Copy remaining elements of arr1
+        while (i < m) {
+            arr3[k++] = arr1[i++];
         }
-    }
 
-    public static String[] mergeSort( String str[], int lo, int hi ){
-
-       if (hi == lo){
-        String A[] = str[lo];
-        return A;
-       }
-
-       int mid = low + (hi-lo)/2;
-
-        String arr1 = mergeSort(str, lo, mid);
-        String arr2 = mergeSort(str, mid+1, hi);
-
-        String arr3 = merge(arr1, arr2);
+        // Copy remaining elements of arr2
+        while (j < n) {
+            arr3[k++] = arr2[j++];
+        }
 
         return arr3;
-
     }
 
-    public static void main(String args[]){
+    // Merge Sort
+    public static String[] mergeSort(String[] str, int lo, int hi) {
 
-        int arr[]={7,6,5,4,5,5,5,5,5,3,2};
-        mergeSort(arr,0,arr.length-1);
-        for(int i=0; i<arr.length; i++){
-            System.out.print(arr[i]+",");
+        if (lo == hi) {
+            String[] A = { str[lo] };
+            return A;
         }
 
+        int mid = lo + (hi - lo) / 2;
 
+        String[] left = mergeSort(str, lo, mid);
+        String[] right = mergeSort(str, mid + 1, hi);
+
+        return merge(left, right);
+    }
+
+    public static void main(String[] args) {
+
+        String[] arr = {
+                "sun",
+                "earth",
+                "mars",
+                "mercury"
+        };
+
+        String[] sorted = mergeSort(arr, 0, arr.length - 1);
+
+        for (String s : sorted) {
+            System.out.println(s);
+        }
     }
 }
